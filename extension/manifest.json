@@ -3,16 +3,17 @@
     "name": "Stay FOCUS",
     "version": "0.0.1",
     "description": "Stay focus your main thing",
-    "default_locale": "ko",
     "author": "Jaewook Ahn",
     "permissions": [
         "storage",
         "tabs"
     ],
-    "background": {
-        "scripts": ["build/index.js"],
-        "persistent": false
-    },
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "js": ["build/extension/index.js"]
+        }
+    ],
     "browser_action": {
         "default_popup": "build/settings/index.html"
     }

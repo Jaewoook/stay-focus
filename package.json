@@ -5,7 +5,7 @@
   "scripts": {
       "build-extension": "cd extension && yarn build",
       "build-settings": "cd settings && yarn build",
-      "build": "yarn build-extension && yarn build-settings",
+      "build": "rm -rf extension/build && yarn build-extension && yarn build-settings",
       "lint-extension": "",
       "lint-settings": "",
       "lint": "yarn lint-extension && yarn lint-settings",

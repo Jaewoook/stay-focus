@@ -8,9 +8,10 @@
         "module": "ESNext",
         "baseUrl": ".",
         "checkJs": true,
-        "outDir": "build"
+        "moduleResolution": "classic",
+        "outDir": "build/extension"
     },
     "include": [
-        "."
+        "src"
     ]
 }
