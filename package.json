@@ -1,0 +1,16 @@
+{
+  "name": "stay-focus",
+  "version": "1.0.0",
+  "description": "Stay focus your main thing",
+  "scripts": {
+      "build-extension": "cd extension && yarn build",
+      "build-settings": "cd settings && yarn build",
+      "build": "yarn build-extension && yarn build-settings",
+      "lint-extension": "",
+      "lint-settings": "",
+      "lint": "yarn lint-extension && yarn lint-settings",
+      "package": ""
+  },
+  "author": "Jaewook Ahn",
+  "license": "MIT"
+}
