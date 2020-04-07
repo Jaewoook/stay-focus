@@ -6,41 +6,48 @@ type SiteInfo = {
 class Settings {
     blockSites: SiteInfo[] = [];
 
-    constructor() {
-        this.loadSettings();
-    }
-
     loadSettings() {
-        // chrome.storage.sync.get("block_list", (settings) => {
-        //     this.blockSites = settings.block_list as SiteInfo[];
+        return new Promise<void>((resolve, reject) => {
+            chrome.storage.sync.get("block_list", (settings) => {
+                this.blockSites = settings.block_list as SiteInfo[];
 
-        //     //  for debugging
-        //     console.log("Settings loaded!");
-        //     console.log(this.blockSites);
-        // });
-        const mock: SiteInfo[] = [{
-            title: "트위치",
-            url: "https://www.twitch.tv/",
-        }];
-        this.blockSites = mock;
-        console.log("mock: ", this.blockSites);
+                //  code for debugging
+                console.log("Settings loaded!");
+                console.log(this.blockSites);
+
+                // const mock: SiteInfo[] = [{
+                //     title: "트위치",
+                //     url: "https://www.twitch.tv/",
+                // }];
+                // this.blockSites = mock;
+                // console.log("mock: ", this.blockSites);
+
+                resolve();
+            });
+
+        });
     }
 }
 
-const settings = new Settings();
+(async function() {
+    const settings = new Settings();
+    await settings.loadSettings();
 
-console.log("href: ", window.location.href);
-let active = false;
+    const active = settings.blockSites
+                        .map((info) => info.url)
+                        .some((url) => window.location.href.startsWith(url));
 
-console.log(settings.blockSites.length);
-settings.blockSites.map((info) => info.url).forEach((url) => {
-        console.log(active, window.location.href.startsWith(url));
-        if (!active) {
-            active = window.location.href.startsWith(url);
-        }
+    if (active) {
+        console.log("Block site");
+        const container = document.createElement("div");
+        container.style.width = "100vw";
+        container.style.height = "100vh";
+        const image = new Image();
+        image.src = chrome.runtime.getURL("build/extension/images/fallback.png");
+        image.style.width = "70%";
+        image.style.margin = "0 15%";
+        document.body.innerHTML = "";
+        container.appendChild(image);
+        document.body.appendChild(container);
     }
-);
-if (active) {
-    console.log("filter site");
-    document.body.innerHTML = "<h1>It Works!</h1>";
-}
+})();
