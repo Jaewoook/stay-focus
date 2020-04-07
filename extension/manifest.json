@@ -8,6 +8,9 @@
         "storage",
         "tabs"
     ],
+    "web_accessible_resources": [
+        "build/extension/images/*.png"
+    ],
     "content_scripts": [
         {
             "matches": ["*://*/*"],
