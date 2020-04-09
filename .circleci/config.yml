@@ -16,7 +16,8 @@ jobs:
       - persist_to_workspace:
           root: ~/app
           paths:
-            - node_modules
+            - extension/node_modules
+            - settings/node_modules
   build:
     working_directory: ~/app
     docker:
