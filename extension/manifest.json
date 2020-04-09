@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Stay FOCUS",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Stay focus your main thing",
     "author": "Jaewook Ahn",
     "permissions": [
