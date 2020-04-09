@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Stay focus your main thing",
   "scripts": {
+      "postinstall": "cd settings && yarn && cd ../extension && yarn",
       "build-extension": "cd extension && yarn build",
       "build-settings": "cd settings && yarn build",
       "build": "rm -rf extension/build && yarn build-extension && yarn build-settings",
