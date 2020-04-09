@@ -9,7 +9,7 @@ class Settings {
     loadSettings() {
         return new Promise<void>((resolve, reject) => {
             chrome.storage.sync.get("block_list", (settings) => {
-                this.blockSites = settings.block_list as SiteInfo[];
+                this.blockSites = settings.block_list || [];
 
                 //  code for debugging
                 console.log("Settings loaded!");
