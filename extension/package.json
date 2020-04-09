@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "rm -rf build && tsc && cp -r src/images build/extension/images",
-    "lint": "eslint -c tsconfig.json",
-    "package": "rm -rf dist && mkdir dist && cp manifest.json dist/manifest.json && cp -r build dist/build"
+    "lint": "eslint -c tsconfig.json"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.103",

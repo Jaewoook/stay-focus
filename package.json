@@ -9,7 +9,7 @@
       "lint-extension": "",
       "lint-settings": "",
       "lint": "yarn lint-extension && yarn lint-settings",
-      "package": "cd extension && yarn package"
+      "package": "rm -rf dist && mkdir dist && cp extension/manifest.json dist/manifest.json && cp -r extension/build dist/build"
   },
   "author": "Jaewook Ahn",
   "license": "MIT"
