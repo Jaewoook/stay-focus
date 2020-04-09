@@ -1,4 +1,5 @@
-import { ActionType, getType } from "typesafe-actions";
+import * as types from "./ActionTypes";
+import { ActionType } from "typesafe-actions";
 import * as actions from "./actions";
 import { SiteInfo } from "../utils";
 
@@ -16,12 +17,12 @@ const INITIAL_STATE: State = {
 
 export const reducer = (state: State = INITIAL_STATE, { type, payload }: Actions): State => {
     switch (type) {
-        case getType(actions.updateBlockList):
+        case types.UPDATE_BLOCK_LIST:
             return {
                 ...state,
                 blockList: payload.list || [],
             };
-        case getType(actions.updateAllowList):
+        case types.UPDATE_ALLOW_SITE:
             return {
                 ...state,
                 allowList: payload.list || [],
