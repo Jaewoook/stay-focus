@@ -22,7 +22,7 @@ jobs:
     docker:
       - image: 'circleci/node:latest'
     steps:
-      - checkout\
+      - checkout
       - attach_workspace:
           at: ~/app
       - run: yarn build
