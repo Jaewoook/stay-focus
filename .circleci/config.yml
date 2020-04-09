@@ -6,7 +6,7 @@ jobs:
       - image: 'circleci/node:latest'
     steps:
       - checkout
-      - resotre_cache:
+      - restore_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
       - run: yarn
       - save_cache:
