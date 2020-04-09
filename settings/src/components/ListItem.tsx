@@ -1,16 +1,17 @@
 import React from "react";
 import { Block, Button, Flex, Icon, Input, Typo, theme } from "@salesboost/malta";
+
+import { useDispatch } from "react-redux";
+import { updateBlockList } from "../redux/actions";
 import { Settings } from "../utils";
 
 interface ListItemProps {
     url: string;
     site: string;
+    onRemoveClick: (site: string, url: string) => void;
 }
 
-export const ListItem = ({ site, url }: ListItemProps) => {
-    const handleCloseClick = React.useCallback(() => {
-        Settings.removeBlockSite(site, url);
-    }, [site, url]);
+export const ListItem = ({ site, url, onRemoveClick }: ListItemProps) => {
     return (
         <Flex width="100%" alignItems="center" style={{ padding: "8px 4px" }}>
             <Flex flex={1} alignItems="baseline">
@@ -19,7 +20,7 @@ export const ListItem = ({ site, url }: ListItemProps) => {
                 <Typo maxWidth="175px" name="caption_121212_nv40_300"
                     style={{ marginLeft: "6px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{url}</Typo>
             </Flex>
-            <Block cursor="pointer" onClick={handleCloseClick}>
+            <Block cursor="pointer" onClick={() => onRemoveClick(site, url)}>
                 <Icon name="close" size={12} color={theme.colors.navy._40} />
             </Block>
         </Flex>
@@ -27,6 +28,7 @@ export const ListItem = ({ site, url }: ListItemProps) => {
 };
 
 export const NewItem = () => {
+    const dispatch = useDispatch();
     const [url, setUrl] = React.useState<string>("");
     const [site, setSite] = React.useState<string>("");
     const [active, setActive] = React.useState<boolean>(false);
@@ -43,11 +45,14 @@ export const NewItem = () => {
         setActive(nextState);
     }, [active, setActive, site, url]);
 
-    const handleAddClick = React.useCallback(() => {
-        Settings.addBlockSite(site, url);
+    const handleAddClick = React.useCallback(async () => {
+        await Settings.addBlockSite(site, url);
+        console.log("add block site info", Settings.blockSites);
+        dispatch(updateBlockList(Settings.blockSites));
         setSite("");
         setUrl("");
-    }, [site, url, setSite, setUrl]);
+        setActive(false);
+    }, [dispatch, site, url, setSite, setUrl, setActive, active]);
     return (
         <Flex flexDirection="column">
             {active ? (
