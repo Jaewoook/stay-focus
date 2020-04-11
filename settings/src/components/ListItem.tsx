@@ -43,7 +43,7 @@ export const NewItem = () => {
             })
         }
         setActive(nextState);
-    }, [active, setActive, site, url]);
+    }, [active, setActive]);
 
     const handleAddClick = React.useCallback(async () => {
         await Settings.addBlockSite(site, url);
@@ -52,7 +52,7 @@ export const NewItem = () => {
         setSite("");
         setUrl("");
         setActive(false);
-    }, [dispatch, site, url, setSite, setUrl, setActive, active]);
+    }, [dispatch, site, url, setSite, setUrl, setActive]);
     return (
         <Flex flexDirection="column">
             {active ? (
