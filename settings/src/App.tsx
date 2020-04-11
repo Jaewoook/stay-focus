@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Flex, Split, Typo } from "@salesboost/malta";
 import { Layout, NewItem, ListItem } from "./components";
 
@@ -25,7 +25,7 @@ const BlockList = () => {
                 onRemoveClick={handleRemoveClick} />
         ))}
     </>;
-}
+};
 
 const App = () => {
     const dispatch = store.dispatch;
@@ -35,7 +35,7 @@ const App = () => {
                 await Settings.loadSettings();
                 dispatch(updateBlockList(Settings.blockSites));
             })();
-            chrome.runtime.onMessage.addListener((request, sender, sendRespond) => {
+            chrome.runtime.onMessage.addListener((request) => {
                 if (request.UPDATE_SETTINGS) {
                     dispatch(updateBlockList(Settings.blockSites));
                 }
