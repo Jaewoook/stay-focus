@@ -6,8 +6,8 @@
     "lint": "eslint -c tsconfig.json"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.103",
-    "@types/node": "^13.11.0"
+    "@types/chrome": "^0.0.104",
+    "@types/node": "^13.11.1"
   },
   "dependencies": {
     "typescript": "^3.8.3"
