@@ -40,7 +40,7 @@ export const NewItem = () => {
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 setUrl(tabs[0].url || "");
                 setSite(tabs[0].title || "");
-            })
+            });
         }
         setActive(nextState);
     }, [active, setActive]);

@@ -31,6 +31,15 @@ jobs:
           root: ~/app
           paths:
             - extension/build
+  lint:
+    working_directory: ~/app
+    docker:
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/app
+      - run: yarn lint
   package:
     working_directory: ~/app
     docker:
@@ -48,9 +57,13 @@ workflows:
       - build:
           requires:
             - prepare
+      - lint:
+          requires:
+            - prepare
       - package:
           requires:
             - build
+            - lint
           filters:
             branches:
               only:
