@@ -7,8 +7,8 @@
       "build-extension": "cd extension && yarn build",
       "build-settings": "cd settings && yarn build",
       "build": "rm -rf extension/build && yarn build-extension && yarn build-settings",
-      "lint-extension": "",
-      "lint-settings": "",
+      "lint-extension": "cd extension && yarn lint",
+      "lint-settings": "cd settings && yarn lint",
       "lint": "yarn lint-extension && yarn lint-settings",
       "package": "rm -rf dist && mkdir dist && cp extension/manifest.json dist/manifest.json && cp -r extension/build dist/build"
   },
