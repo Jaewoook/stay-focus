@@ -7,7 +7,7 @@ class Settings {
     blockSites: SiteInfo[] = [];
 
     loadSettings() {
-        return new Promise<void>((resolve, reject) => {
+        return new Promise<void>((resolve) => {
             chrome.storage.sync.get("block_list", (settings) => {
                 this.blockSites = settings.block_list || [];
 
